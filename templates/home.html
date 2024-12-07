@@ -9,7 +9,54 @@
       rel="stylesheet"
     />
   </head>
-  <body>
-    <h1>Mean Calculator</h1>
+  <body class="container my-5">
+    <div class="container mt-5">
+        <h2>Maths Calculation</h2>
+        <form method="POST">
+            <div class="mb-3">
+                <label for="data_type" class="form-label">Choose Data Type:</label>
+                <select id="data_type" name="data_type" class="form-control">
+                    <option value="1">Normal Data</option>
+                    <option value="2">Range Data</option>
+                </select>
+            </div>
+    
+            <div class="mb-3">
+                <label for="data_points" class="form-label">Number of Data Points:</label>
+                <input type="number" id="data_points" name="data_points" class="form-control" required>
+            </div>
+    
+            <div id="data_input_section"></div>
+    
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+        <!-- val of x is available and if yes then use it -->
+        {% if xi %}
+        <h3 class="mt-4">Results</h3>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>xi</th>
+                    <th>fi</th>
+                    <th>fixi</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for x, f, fx in zip(xi, fi, fixi) %}
+                <tr>
+                    <td>{{ x }}</td>
+                    <td>{{ f }}</td>
+                    <td>{{ fx }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <p><strong>Total Sum:</strong> {{ total_sum }}</p>
+        <p><strong>Mean:</strong> {{ mean }}</p>
+        {% elif error %}
+            <p class="text-danger">{{ error }}</p>
+        {% endif %}
+    </div>
   </body>
 </html>
