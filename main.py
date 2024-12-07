@@ -12,8 +12,8 @@
 #     app.run(debug=True)
 
 def main():
-    l1 = []
-    l2 = []
+    xi = []
+    fi = []
     fixi = []
     total_sum = 0
     mean = 0
@@ -24,13 +24,13 @@ def main():
         for i in range (0,n):
             xi1 = int(input(f'Enter {i+1} data: '))
             fi1 = int(input(f'Enter frenquency of {i+1}: '))
-            l1.append(xi1)
-            l2.append(fi1)
+            xi.append(xi1)
+            fi.append(fi1)
         
         for i in range (0,n):
-            fixi.append(l1[i] * l2[i])
+            fixi.append(xi[i] * fi[i])
             
-        total_sum = sum(l2)
+        total_sum = sum(fi)
         mean = sum(fixi)/total_sum
         
         
@@ -38,13 +38,23 @@ def main():
         print("|-----|-----|-----|")
         for i in range (0,n):
             
-            print(f'|  {l1[i]}  |  {l2[i]}  |  {fixi[i]}  |')
+            print(f'|  {xi[i]}  |  {fi[i]}  |  {fixi[i]}  |')
             print("|-----|-----|-----|")
         print(f'|  {total_sum}  |     |  {sum(fixi)  }')
         
+        
     elif(a1 == 2):
         n = int(input("Enter number of data: "))
-        
+        for i in range (0,n):
+            temp = (input(f"Enter a {i+1} range: ").split("-"))
+            xi.append((temp[0]+temp[1])/2)    
+            temp.clear() 
+            fi1 = int(input(f'Enter frenquency of {i+1}: '))
+            fi.append(fi1[i])
+            
+        for i in range (0,n):
+            fixi.append(xi[i] * fi[i])
+            
             
     print(f'mean of the sum is {mean}')
 
