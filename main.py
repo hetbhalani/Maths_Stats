@@ -67,8 +67,10 @@ def main():
     xi = []
     fi = []
     di = []
+    ui = []
     fixi = []
     fidi = []
+    fiui = []
     total_sum = 0
     mean = 0
     temp = []
@@ -197,6 +199,34 @@ def main():
             )
             print(table)
             print(f'mean of the sum is: {mean:.4f}') 
+        
+        else:
+            print("Enter a valid choice")
+            
+            
+    elif a2 == 3:
+        n = int(input("Enter numner of data: "))
+        
+        print(f"Enter {n} ranged data")
+        
+        for i in range (n):
+            temp.append((input(f"Enter a {i+1} range: ")))
+            tempOfTemp = temp[i].split("-")
+            c = tempOfTemp[1] - tempOfTemp[0]
+            xi.append((int(tempOfTemp[0])+int(tempOfTemp[1]))/2)    
+            tempOfTemp.clear() 
+            fi.append(int(input(f'Enter frenquency of {i+1}: ')))
+            
+        A = xi[n // 2]
+            
+        for i in range (n):
+            di.append(xi[i] - A)
+            fidi.append(di[i] * fi[i])
+            if i == n//2:
+                tbl.append([temp[i],f'{xi[i]} = A',fi[i],di[i],fidi[i]])
+            else:
+                tbl.append([temp[i],xi[i],fi[i],di[i],fidi[i]])
+                
                 
 if __name__ == "__main__":
     main()  
