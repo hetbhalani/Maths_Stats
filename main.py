@@ -63,73 +63,111 @@
 from flask import Flask, render_template, request
 from tabulate import tabulate
 
-
-# app = Flask(__name__)
-
-# @app.route("/", methods=["GET", "POST"])
 def main():
     xi = []
     fi = []
+    di = []
     fixi = []
+    fidi = []
     total_sum = 0
     mean = 0
     temp = []
     tbl = []
     
-    
-    a1 = int(input("enter 1 for normal and 2 for rang data: "))
-    
-    if a1 == 1:
-        n = int(input("Enter number of data: "))
-        for i in range (0,n):
-            xi1 = int(input(f'Enter {i+1} data: '))
-            fi1 = int(input(f'Enter frenquency of {i+1}: '))
-            xi.append(xi1)
-            fi.append(fi1)
+    a2 = int(input("1 for Direct Method\n2 for Assumed Mean Method\n3 for Step Deviation Method\n Enter choice: "))
+    if a2 == 1:
+        a3 = int(input("enter 1 for normal and 2 for ranged data: "))
         
-        for i in range (0,n):  
-            fixi.append(xi[i] * fi[i])
-            tbl.append([xi[i], fi[i], fixi[i]])  
-        total_sum = sum(fi)
-        mean = sum(fixi) / total_sum
-
-        tbl.append(["Total", total_sum, sum(fixi)])
-        table = tabulate(
-            tbl,headers=["xi","fi","fixi"],tablefmt="grid",stralign="center", colalign=("center", "center", "center")
-        )
-        print(table)
-        print(f'mean of the sum is: {mean}') 
-
-        
-        
-    elif(a1 == 2):
-        n = int(input("Enter number of data: "))
-        for i in range (0,n):
-            temp.append((input(f"Enter a {i+1} range: ")))
-            tempOfTemp = temp[i].split("-")
-            xi.append((int(tempOfTemp[0])+int(tempOfTemp[1]))/2)    
-            tempOfTemp.clear() 
-            fi.append(int(input(f'Enter frenquency of {i+1}: ')))
+        if a3 == 1:
+            n = int(input("Enter number of data: "))
             
-        
-        for i in range (0,n):  
-            fixi.append(xi[i] * fi[i])
-            tbl.append([temp[i], fi[i], fixi[i]])  
-        total_sum = sum(fi)
-        mean = sum(fixi) / total_sum
-
-        tbl.append(["Total", total_sum, sum(fixi)])
-        
-        table = tabulate(
-            tbl,headers=["xi","fi","fixi"],tablefmt="grid",stralign="center", colalign=("center", "center", "center")
-        )
-        print(table)
-        print(f'mean of the sum is: {mean}') 
-
-        
-    else:
-        print("Enter a valid choice bhaibandh")
+            for i in range (0,n):
+                xi1 = int(input(f'Enter {i+1} data: '))
+                fi1 = int(input(f'Enter frenquency of {i+1}: '))
+                xi.append(xi1)
+                fi.append(fi1)
+            
+            for i in range (0,n):  
+                fixi.append(xi[i] * fi[i])
+                tbl.append([xi[i], fi[i], fixi[i]]) 
                 
+            total_sum = sum(fi)
+            mean = sum(fixi) / total_sum
+
+            tbl.append(["Total", total_sum, sum(fixi)])
+            
+            table = tabulate(
+                tbl,headers=["xi","fi","fixi"],tablefmt="grid",stralign="center", colalign=("center", "center", "center")
+            )
+            
+            print(table)
+            print(f'mean of the sum is: {mean}') 
+
+            
+            
+        elif(a3 == 2):
+            n = int(input("Enter number of data: "))
+            for i in range (0,n):
+                temp.append((input(f"Enter a {i+1} range: ")))
+                tempOfTemp = temp[i].split("-")
+                xi.append((int(tempOfTemp[0])+int(tempOfTemp[1]))/2)    
+                tempOfTemp.clear() 
+                fi.append(int(input(f'Enter frenquency of {i+1}: ')))
+                
+            
+            for i in range (0,n):  
+                fixi.append(xi[i] * fi[i])
+                tbl.append([temp[i], fi[i], fixi[i]]) 
+                
+            total_sum = sum(fi)
+            mean = sum(fixi) / total_sum
+
+            tbl.append(["Total", total_sum, sum(fixi)])
+            
+            table = tabulate(
+                tbl,headers=["xi","fi","fixi"],tablefmt="grid",stralign="center", colalign=("center", "center", "center")
+            )
+            print(table)
+            print(f'mean of the sum is: {mean}') 
+    
+        else:
+            print("Enter a valid choice bhaibandh")
+            
+            
+    elif a2 == 2:
+        a3 = int(input("enter 1 for normal and 2 for ranged data: "))
+        
+        if a3 == 1:
+            n = int(input("Enter number of data: "))
+            
+            for i in range (n):
+                xi1 = int(input(f'Enter {i+1} data: '))
+                fi1 = int(input(f'Enter frenquency of {i+1}: '))
+                
+                xi.append(xi1)
+                fi.append(fi1)
+             
+            A = xi[n // 2] #assum A as center of xi
+                
+            for i in range (n):
+                di.append(xi[i] - A)
+                fidi.append(fi[i]*di[i])
+                if i == n//2:
+                    tbl.append([f'{xi[i]} = A',fi[i],di[i],fidi[i]])
+                else:
+                    tbl.append([xi[i],fi[i],di[i],fidi[i]])
+                
+                
+            total_sum = sum(fi)
+            mean = (sum(fidi) / total_sum)+A
+            tbl.append(["Total", total_sum," ", sum(fidi)])
+
+            table = tabulate(
+                tbl,headers=["xi","fi","di","fidi"],tablefmt="grid",stralign="center", colalign=("center", "center", "center","center")
+            )
+            print(table)
+            print(f'mean of the sum is: {mean}') 
+
         
 
 if __name__ == "__main__":
