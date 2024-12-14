@@ -101,7 +101,7 @@ def main():
             )
             
             print(table)
-            print(f'mean of the sum is: {mean}') 
+            print(f'mean of the sum is: {mean:.4f}') 
 
             
             
@@ -117,18 +117,18 @@ def main():
             
             for i in range (0,n):  
                 fixi.append(xi[i] * fi[i])
-                tbl.append([temp[i], fi[i], fixi[i]]) 
+                tbl.append([temp[i],xi[i], fi[i], fixi[i]]) 
                 
             total_sum = sum(fi)
             mean = sum(fixi) / total_sum
 
-            tbl.append(["Total", total_sum, sum(fixi)])
+            tbl.append(["Total"," ", total_sum, sum(fixi)])
             
             table = tabulate(
-                tbl,headers=["xi","fi","fixi"],tablefmt="grid",stralign="center", colalign=("center", "center", "center")
+                tbl,headers=["Class","xi","fi","fixi"],tablefmt="grid",stralign="center", colalign=("center", "center", "center")
             )
             print(table)
-            print(f'mean of the sum is: {mean}') 
+            print(f'mean of the sum is: {mean:.4f}') 
     
         else:
             print("Enter a valid choice bhaibandh")
@@ -166,9 +166,37 @@ def main():
                 tbl,headers=["xi","fi","di","fidi"],tablefmt="grid",stralign="center", colalign=("center", "center", "center","center")
             )
             print(table)
-            print(f'mean of the sum is: {mean}') 
+            print(f'mean of the sum is: {mean:.4f}') 
 
-        
+        elif a3 == 2:
+            n = int(input("Enter number of data: "))
+            
+            for i in range (n):
+                temp.append((input(f"Enter a {i+1} range: ")))
+                tempOfTemp = temp[i].split("-")
+                xi.append((int(tempOfTemp[0])+int(tempOfTemp[1]))/2)    
+                tempOfTemp.clear() 
+                fi.append(int(input(f'Enter frenquency of {i+1}: ')))
 
+            A = xi[n // 2]
+            
+            for i in range (n):
+                di.append(xi[i] - A)
+                fidi.append(di[i] * fi[i])
+                if i == n//2:
+                    tbl.append([temp[i],f'{xi[i]} = A',fi[i],di[i],fidi[i]])
+                else:
+                    tbl.append([temp[i],xi[i],fi[i],di[i],fidi[i]])
+                    
+            total_sum = sum(fi)
+            mean = (sum(fidi) / total_sum)+A
+            tbl.append(["Total"," ", total_sum," ", sum(fidi)])
+
+            table = tabulate(
+                tbl,headers=["Class","xi","fi","di","fidi"],tablefmt="grid",stralign="center", colalign=("center","center", "center", "center","center")
+            )
+            print(table)
+            print(f'mean of the sum is: {mean:.4f}') 
+                
 if __name__ == "__main__":
     main()  
