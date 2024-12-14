@@ -186,7 +186,7 @@ def main():
             print("Enter a valid choice")
     
     elif a1 == 2:
-        a2 = int(input("1 for simple data\n2 for simple data with frequency\n3 for ranged data"))
+        a2 = int(input("1 for simple data\n2 for simple data with frequency\n3 for ranged data\nEnter your choice: "))
         
         if a2 == 1:
             n = int(input("Enter number of data: "))
@@ -199,6 +199,27 @@ def main():
                 print(f"Median of the sum is: {(xi[n//2] + xi[(n//2)+1])/2}")
             else:
                 print(f"Median of the sum is: {xi[n//2]}")
+                
+        elif a2 == 2:
+            n = int(input("Enter number of data: "))
+            
+            for i in range (n):
+                xi1 = int(input(f'Enter {i+1} data: '))
+                fi1 = int(input(f'Enter frenquency of {i+1}: '))
+                
+                xi.append(xi1)
+                fi.append(fi1)
+            
+            combined = list(zip(xi,fi))
+            
+            combined.sort()
+            
+            sort_xi , sort_fi = zip(*combined) #unzip the list
+            
+            xi = list(sort_xi)
+            fi = list(sort_fi)
+            
+            
 if __name__ == "__main__":
     main()  
 
