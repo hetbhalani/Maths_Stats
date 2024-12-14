@@ -212,7 +212,7 @@ def main():
         for i in range (n):
             temp.append((input(f"Enter a {i+1} range: ")))
             tempOfTemp = temp[i].split("-")
-            c = tempOfTemp[1] - tempOfTemp[0]
+            c = int(tempOfTemp[1]) - int(tempOfTemp[0])
             xi.append((int(tempOfTemp[0])+int(tempOfTemp[1]))/2)    
             tempOfTemp.clear() 
             fi.append(int(input(f'Enter frenquency of {i+1}: ')))
@@ -220,13 +220,22 @@ def main():
         A = xi[n // 2]
             
         for i in range (n):
-            di.append(xi[i] - A)
-            fidi.append(di[i] * fi[i])
+            ui.append((xi[i] - A)/c)
+            fiui.append(ui[i] * fi[i])
             if i == n//2:
-                tbl.append([temp[i],f'{xi[i]} = A',fi[i],di[i],fidi[i]])
+                tbl.append([temp[i],f'{xi[i]} = A',fi[i],ui[i],fiui[i]])
             else:
-                tbl.append([temp[i],xi[i],fi[i],di[i],fidi[i]])
+                tbl.append([temp[i],xi[i],fi[i],ui[i],fiui[i]])
                 
+        total_sum = sum(fi)
+        mean = ((sum(fiui) / total_sum)*c)+A
+        tbl.append(["Total"," ", total_sum," ", sum(fiui)])
+
+        table = tabulate(
+            tbl,headers=["Class","xi","fi","ui","fiui"],tablefmt="grid",stralign="center", colalign=("center","center", "center", "center","center")
+        )
+        print(table)
+        print(f'mean of the sum is: {mean:.4f}') 
                 
 if __name__ == "__main__":
     main()  
