@@ -77,6 +77,7 @@ def main():
     tbl = []
     
     a2 = int(input("1 for Direct Method\n2 for Assumed Mean Method\n3 for Step Deviation Method\n Enter choice: "))
+    
     if a2 == 1:
         a3 = int(input("enter 1 for normal and 2 for ranged data: "))
         
@@ -207,7 +208,7 @@ def main():
     elif a2 == 3:
         n = int(input("Enter numner of data: "))
         
-        print(f"Enter {n} ranged data")
+        print(f"Enter {n} ranged datas")
         
         for i in range (n):
             temp.append((input(f"Enter a {i+1} range: ")))
@@ -234,8 +235,12 @@ def main():
         table = tabulate(
             tbl,headers=["Class","xi","fi","ui","fiui"],tablefmt="grid",stralign="center", colalign=("center","center", "center", "center","center")
         )
+        
         print(table)
-        print(f'mean of the sum is: {mean:.4f}') 
+        print(f'mean of the sum is: {mean:.4f}')
+        
+    else:
+        print("Enter a valid choice")
                 
 if __name__ == "__main__":
     main()  
