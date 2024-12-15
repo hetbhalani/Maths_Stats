@@ -241,6 +241,21 @@ def main():
             )
             print(table)
             print(f'Median of the sum is: {xi[tempi]}')
+            
+        elif a2 == 3:
+            n = int(input("Enter numner of data: "))
+            
+            print(f"Enter {n} ranged datas")
+            
+            for i in range (n):
+                temp.append((input(f"Enter a {i+1} range: ")))
+                tempOfTemp = temp[i].split("-")
+                c = int(tempOfTemp[1]) - int(tempOfTemp[0])
+                xi.append((int(tempOfTemp[0])+int(tempOfTemp[1]))/2)    
+                tempOfTemp.clear() 
+                fi.append(int(input(f'Enter frenquency of {i+1}: ')))
+            
+            
 if __name__ == "__main__":
     main()  
 
