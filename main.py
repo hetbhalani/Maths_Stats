@@ -9,6 +9,7 @@ def main():
     fixi = []
     fidi = []
     fiui = []
+    cfi = []
     total_sum = 0
     mean = 0
     temp = []
@@ -218,8 +219,28 @@ def main():
             
             xi = list(sort_xi)
             fi = list(sort_fi)
+            temp = 0
             
+            for i in fi:
+                temp += i
+                cfi.append(temp)
+                
+            for i in range (n):
+                tbl.append([xi[i],fi[i],cfi[i]])
             
+            temp = sum(fi)//2
+            tempi = 0
+            
+            for i in range (len(cfi)):
+                if cfi[i]>temp:
+                    tempi = i
+                    break
+
+            table = tabulate(
+                tbl,headers=["xi","fi","cfi"],tablefmt="grid",stralign="center", colalign=("center", "center","center")
+            )
+            print(table)
+            print(f'Median of the sum is: {xi[tempi]}')
 if __name__ == "__main__":
     main()  
 
