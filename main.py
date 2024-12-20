@@ -247,6 +247,7 @@ def main():
             
             print(f"Enter {n} ranged datas")
             
+            tempForCfi = 0
             for i in range (n):
                 temp.append((input(f"Enter a {i+1} range: ")))
                 tempOfTemp = temp[i].split("-")
@@ -254,18 +255,32 @@ def main():
                 xi.append((int(tempOfTemp[0])+int(tempOfTemp[1]))/2)    
                 tempOfTemp.clear() 
                 fi.append(int(input(f'Enter frenquency of {i+1}: ')))
-                
-            tempForCfi = 0
-            for i in range (n):
                 tempForCfi+=fi[i]
                 cfi.append(tempForCfi)
                 tbl.append([temp[i],fi[i],cfi[i]])
+                
+            nByTwo = sum(fi)//2
+            tempi = 0
+            while True:
+                if nByTwo <= cfi[tempi]:
+                    break
+                tempi+=1
+                
+            f = fi[tempi]
+            if tempi == 0:
+                F = 0
+            else:
+                F = cfi[tempi-1]
             
+            L = temp[tempi].split("-")
+            
+            median = int(L[0]) + (((nByTwo-F)/f)*c)
             
             table = tabulate(
                 tbl,headers=["Class","fi","cfi"],tablefmt="grid",stralign="center", colalign=("center", "center","center")
             ) 
-            print(table)                       
+            print(table)
+            print(f"Median of the sum is {median}")                       
 if __name__ == "__main__":
     main()  
 
