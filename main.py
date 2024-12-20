@@ -254,8 +254,18 @@ def main():
                 xi.append((int(tempOfTemp[0])+int(tempOfTemp[1]))/2)    
                 tempOfTemp.clear() 
                 fi.append(int(input(f'Enter frenquency of {i+1}: ')))
+                
+            tempForCfi = 0
+            for i in range (n):
+                tempForCfi+=fi[i]
+                cfi.append(tempForCfi)
+                tbl.append([temp[i],fi[i],cfi[i]])
             
             
+            table = tabulate(
+                tbl,headers=["Class","fi","cfi"],tablefmt="grid",stralign="center", colalign=("center", "center","center")
+            ) 
+            print(table)                       
 if __name__ == "__main__":
     main()  
 
