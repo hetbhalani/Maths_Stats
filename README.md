@@ -1,6 +1,6 @@
 # Maths_Stats
 
-A Python project for performing statistical analysis and mathematical computations.
+- A Python project for performing statistical analysis and mathematical computations.
 
 ## Features
 
@@ -9,9 +9,9 @@ A Python project for performing statistical analysis and mathematical computatio
 ## Installation
 
 1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/hetbhalani/Maths_Stats.git
-   ````
+```bash
+git clone https://github.com/hetbhalani/Maths_Stats.git
+````
 2. **Install dependencies**
 ```bash
 pip install -r requirements.txt
@@ -20,4 +20,3 @@ pip install -r requirements.txt
 ```bash
 python main.py
 ```
-   
